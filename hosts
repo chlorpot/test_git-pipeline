@@ -1,2 +1,2 @@
 [node1]
-node1 10.0.2.18
+node1 ansible_host=10.0.2.18
