@@ -1,2 +1,8 @@
 [node1]
 node1 ansible_host=10.0.2.18
+
+[node1:vars]
+ansible_sudo_pass=toolsagl
+ansible_remote_user=root
+ansible_sudo=yes
+ansible_sudo_user=root
