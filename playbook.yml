@@ -25,7 +25,7 @@
     - name: 6. Add docker repository
       get_url:
         url: https://download.docker.com/linux/centos/docker-ce.repo
-        dest: /etc/yum.repos/d/docker-ce.repo
+        dest: /etc/yum.repos.d/docker-ce.repo
       become: yes
     - name: 7. Install docker
       package: name=docker-ce state=latest
