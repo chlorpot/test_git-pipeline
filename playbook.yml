@@ -4,5 +4,32 @@
       yum: name=python2-pip state=present
     - name: 2. Install docker-py on host
       pip: name=docker-py state=present
-    - name: 3. Ensure docker service is enabled
-      command: service docker restart
+    - name: REMOVE OLD DOCKER SERVICE
+      yum:
+        name:
+          - docker
+          - docker-client
+          - docker-client-latest
+          - docker-common
+          - docker-latest
+          - docker-latest-logrogate
+          - docker-logrogate
+          - docker-engine
+        state: removed
+    - name: 3. Install yum utils
+      yum: name=yum-utils state=latest
+    - name: 4. Install device-mapper-persistent-data
+      yum: name=device-mapper-persistent-data state=latest
+    - name: 5. Install lvm2
+      yum: name=lvm2 state=latest
+    - name: 6. Add docker repository
+      get_url:
+        url: https://download.docker.com/linux/centos/docker-ce.repo
+        dest: /etc/yum.repos/d/docker-ce.repo
+      become: yes
+    - name: 7. Install docker
+      package: name=docker-ce state=latest
+      become: yes
+    - name: 8. Start docker service
+      service: name=docker state=started enabled=yes
+      become: yes
