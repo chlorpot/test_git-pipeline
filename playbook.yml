@@ -1,5 +1,5 @@
 - hosts: node1
-  remote_user: root
+  remote_user: dsi-sai-admin
   tasks:
     - name: 1. Install pip on host
       yum: name=python2-pip state=present
