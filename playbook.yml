@@ -1,0 +1,8 @@
+- hosts: node1
+  tasks:
+    - name: 1. Install pip on host
+      yum: name=python2-pip state=present
+    - name: 2. Install docker-py on host
+      pip: name=docker-py state=present
+    - name: 3. Ensure docker service is enabled
+      command: service docker restart
